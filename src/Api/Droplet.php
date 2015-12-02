@@ -111,7 +111,7 @@ class Droplet extends AbstractApi
     public function create($name, $region, $size, $image, $backups = false, $ipv6 = false,
         $privateNetworking = false, array $sshKeys = array(), $userData = ""
     ) {
-        $headers = array('Content-Type: application/json');
+        $headers = array('Content-Type' => 'application/json');
 
         $data = array(
             'name' => $name,
@@ -146,7 +146,7 @@ class Droplet extends AbstractApi
      */
     public function delete($id)
     {
-        $headers = array('Content-Type: application/x-www-form-urlencoded');
+        $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
         $this->adapter->delete(sprintf('%s/droplets/%d', self::ENDPOINT, $id), $headers);
     }
 
@@ -433,7 +433,7 @@ class Droplet extends AbstractApi
      */
     private function executeAction($id, array $options)
     {
-        $headers = array('Content-Type: application/json');
+        $headers = array('Content-Type' => 'application/json');
         $content = json_encode($options);
 
         $action = $this->adapter->post(sprintf('%s/droplets/%d/actions', self::ENDPOINT, $id), $headers, $content);
